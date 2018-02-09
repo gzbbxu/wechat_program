@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;*/
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisShardInfo;
 
 /**
  * Redis工具类 工具类里面对外提供的方法和变量多为:静态
@@ -30,7 +31,7 @@ public class RedisUtil {
 
 	private static String password = "123456";// redis密码 认证
 
-	private static boolean isPool = false;// 是否使用redisPool
+	private static boolean isPool = true;// 是否使用redisPool
 
 	private static int timeout = 10000;// 设置默认超时时间10s
 
@@ -102,6 +103,7 @@ public class RedisUtil {
 			}
 		} catch (Exception e) {
 //			log.info("加载的redis.properties文失败");
+			System.out.println("加载的redis.properties文失败");
 			e.printStackTrace();
 		}
 	}
@@ -269,5 +271,11 @@ public class RedisUtil {
 			return null;
 		}
 	}
+/*	public static void main(String[] args) {
+		JedisShardInfo shardInfo = new JedisShardInfo("127.0.0.1", 6379);
+		shardInfo.setPassword("123456");
+		Jedis jedis = new Jedis(shardInfo);
+		jedis.connect();
+	}*/
 	
 }

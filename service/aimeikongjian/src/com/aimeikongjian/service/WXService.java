@@ -17,7 +17,8 @@ public class WXService {
 		StringBuffer sb = new StringBuffer();
 		sb.append(wxSessionKey).append("#").append(wxOpenId);
 		//redisUtil.add(thirdSessionKey, expires, sb.toString());
-		//RedisUtil.setString(thirdSessionKey,sb.toString(),2592000);
+		RedisUtil.setString(thirdSessionKey,sb.toString(),2592000);
+		System.out.println("存入redis: key=:"+thirdSessionKey+":value:"+sb.toString());
 		return thirdSessionKey;
 	}
 }

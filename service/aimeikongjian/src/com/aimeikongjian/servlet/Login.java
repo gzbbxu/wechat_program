@@ -30,6 +30,11 @@ public class Login extends HttpServlet {
                 "&secret="+ConstantUtils.secret+"&js_code="+code+"&grant_type="+ConstantUtils.grantType;
 		JSONObject httpResult=HttpUtils.httpGet(url);
 		//success:{"openid":"okSgY45i02oZZ2sQxC_S0FmYIk68","session_key":"unqqjx7ZOISIEA09VmLujw=="}
+		System.out.println("http:"+httpResult);
+		if(httpResult.getString("openid")==null) {
+			   response.getWriter().write("error");
+			   return;
+		}
 		String openid = httpResult.get("openid").toString();
 		String sessionkey = httpResult.get("session_key").toString();
         result.put("openid",openid);
